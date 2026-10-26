@@ -1,7 +1,7 @@
-package com.library.ui;
+package org.group5.ui;
 
-import com.library.model.Book;
-import com.library.service.Library;
+import org.group5.model.Book;
+import org.group5.service.Library;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -197,8 +197,6 @@ public class BookPanel extends JPanel {
 
         mainContent.add(tableCard, BorderLayout.CENTER);
         add(mainContent, BorderLayout.CENTER);
-
-        // === EVENT LISTENERS ===
 
         // Add Book Action
         btnAddBook.addActionListener(new ActionListener() {
