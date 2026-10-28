@@ -7,7 +7,7 @@ import org.group5.model.Book;
 
 public class BookService {
 
-    public List<Book> books;
+    private List<Book> books;
 
     public BookService() {
         this.books = new ArrayList<Book>();
@@ -36,7 +36,6 @@ public class BookService {
     }
 
     
-
     public boolean removeBook(String bookId) {
         if (bookId == null || bookId.trim().isEmpty()) {
             throw new IllegalArgumentException("Please enter a valid Book ID to remove.");
@@ -51,7 +50,7 @@ public class BookService {
         return books.remove(book);
     }
 
-
+   
 
     public List<Book> searchBooks(String keyword) {
         List<Book> results = new ArrayList<Book>();
@@ -70,7 +69,8 @@ public class BookService {
         return results;
     }
 
-   
+    
+
     public Book findBookById(String bookId) {
         if (bookId == null) return null;
         for (Book b : books) {
@@ -104,5 +104,4 @@ public class BookService {
         }
         return borrowed;
     }
-
 }
