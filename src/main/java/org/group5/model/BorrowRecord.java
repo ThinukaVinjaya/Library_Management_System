@@ -5,13 +5,13 @@ public class BorrowRecord {
     private Book book;
     private Member member;
     private String borrowDate;
-    private String returnDate; // null or empty until returned
-    private String status;     // "Borrowed" or "Returned"
+    private String returnDate; 
+    private String status;     
 
     public static final String STATUS_BORROWED = "Borrowed";
     public static final String STATUS_RETURNED = "Returned";
 
-    // Constructors
+    
     public BorrowRecord() {
         this.status = STATUS_BORROWED;
     }
@@ -34,7 +34,7 @@ public class BorrowRecord {
         this.status = status;
     }
 
-    // Mark as returned
+    
     public void markAsReturned(String returnDate) {
         this.returnDate = returnDate;
         this.status = STATUS_RETURNED;
@@ -43,7 +43,7 @@ public class BorrowRecord {
         }
     }
 
-    // Getters and Setters
+    
     public String getRecordId() {
         return recordId;
     }

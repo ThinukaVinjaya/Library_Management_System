@@ -1,19 +1,19 @@
 package org.group5.service;
 
-import org.group5.model.Book;
-import org.group5.model.BorrowRecord;
 import org.group5.model.Member;
+import org.group5.model.BorrowRecord;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MemberService {
-    private final List<Member> members;
-    private final List<BorrowRecord> borrowRecords;
+
+    private List<Member> members;
+    private List<BorrowRecord> borrowRecords;
 
     public MemberService() {
-        this.members = new ArrayList<>();
-        this.borrowRecords = new ArrayList<>();
+        this.members = new ArrayList<Member>();
+        this.borrowRecords = new ArrayList<BorrowRecord>();
     }
 
     public void addMember(Member member) {
@@ -37,9 +37,7 @@ public class MemberService {
         members.add(member);
     }
 
-    /*
-     Removes a member by ID.
-     */
+    
 
     public boolean removeMember(String memberId) {
         if (memberId == null || memberId.trim().isEmpty()) {
@@ -58,9 +56,7 @@ public class MemberService {
         return members.remove(member);
     }
 
-    /*
-      Searches for members matching keyword in ID, Name, or Contact.
-     */
+    
 
     public List<Member> searchMembers(String keyword) {
         List<Member> results = new ArrayList<Member>();
@@ -78,9 +74,7 @@ public class MemberService {
         return results;
     }
 
-    /*
-      Finds a single member by ID.
-     */
+    
 
     public Member findMemberById(String memberId) {
         if (memberId == null) return null;
@@ -95,5 +89,4 @@ public class MemberService {
     public List<Member> getAllMembers() {
         return new ArrayList<Member>(members);
     }
-
 }

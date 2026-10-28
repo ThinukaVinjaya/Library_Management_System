@@ -9,6 +9,20 @@ import java.util.List;
 
 public class LibraryData {
 
+    private List<Book> books;
+    private List<Member> members;
+    private List<BorrowRecord> borrowRecords;
+    private int recordIdSequence;
+
+    public LibraryData() {
+        this.books = new ArrayList<Book>();
+        this.members = new ArrayList<Member>();
+        this.borrowRecords = new ArrayList<BorrowRecord>();
+        this.recordIdSequence = 1000;
+        seedSampleData();
+    }
+
+
     private void seedSampleData() {
         // Books
         books.add(new Book("B001", "Introduction to Java Programming", "Y. Daniel Liang", "Technology", Book.STATUS_AVAILABLE));
