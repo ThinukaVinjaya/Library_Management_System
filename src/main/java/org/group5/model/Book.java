@@ -2,11 +2,11 @@ package org.group5.model;
 
 public class Book {
 
-     private String bookId;
+    private String bookId;
     private String title;
     private String author;
     private String category;
-    private String availabilityStatus; // "Available" or "Borrowed"
+    private String availabilityStatus; 
 
     public static final String STATUS_AVAILABLE = "Available";
     public static final String STATUS_BORROWED = "Borrowed";
@@ -25,7 +25,6 @@ public class Book {
         this.availabilityStatus = STATUS_AVAILABLE;
     }
 
-    
     public Book(String bookId, String title, String author, String category, String availabilityStatus) {
         this.bookId = bookId;
         this.title = title;
@@ -75,6 +74,7 @@ public class Book {
         this.availabilityStatus = availabilityStatus;
     }
 
+    
     public boolean isAvailable() {
         return STATUS_AVAILABLE.equalsIgnoreCase(this.availabilityStatus);
     }
@@ -91,5 +91,5 @@ public class Book {
     public String toString() {
         return bookId + " - " + title + " (" + author + ")";
     }
-
 }
+
