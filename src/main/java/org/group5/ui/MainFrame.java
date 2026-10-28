@@ -209,9 +209,9 @@ public class MainFrame extends JFrame{
         }
     }
 
-    /*
-      Refreshes all child panels across the entire application.
-     */
+    
+    //Refreshes all child panels across the entire application.
+     
     public void refreshAllPanels() {
         dashboardPanel.refreshData();
         bookPanel.refreshBookTable();
@@ -221,9 +221,9 @@ public class MainFrame extends JFrame{
         historyPanel.refreshHistoryTable();
     }
 
-    /*
-      Custom navigation button with smooth hover highlights and rounded active indicator.
-     */
+    
+    // Custom navigation button with smooth hover highlights and rounded active indicator.
+     
     private static class NavButton extends JButton {
         private boolean isActive = false;
 

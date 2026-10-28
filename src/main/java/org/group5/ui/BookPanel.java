@@ -60,7 +60,7 @@ public class BookPanel extends JPanel {
         JPanel mainContent = new JPanel(new BorderLayout(20, 0));
         mainContent.setOpaque(false);
 
-        // === LEFT PANEL: ADD BOOK FORM ===
+        // LEFT PANEL: ADD BOOK FORM 
         JPanel formCard = UIUtils.createCardPanel();
         formCard.setPreferredSize(new Dimension(300, 0));
 
@@ -108,7 +108,7 @@ public class BookPanel extends JPanel {
 
         mainContent.add(formCard, BorderLayout.WEST);
 
-        // === RIGHT PANEL: BOOK LIST & SEARCH ===
+        //RIGHT PANEL: BOOK LIST & SEARCH 
         JPanel tableCard = UIUtils.createCardPanel();
 
         // Top Search Bar inside Table Card

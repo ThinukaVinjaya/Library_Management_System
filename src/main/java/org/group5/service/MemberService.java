@@ -1,7 +1,8 @@
 package org.group5.service;
 
 public class MemberService {
-         public void addMember(Member member) {
+    
+     public void addMember(Member member) {
         if (member == null) {
             throw new IllegalArgumentException("Member details cannot be null.");
         }
@@ -22,9 +23,7 @@ public class MemberService {
         members.add(member);
     }
 
-    /*
-     Removes a member by ID.
-     */
+    
 
     public boolean removeMember(String memberId) {
         if (memberId == null || memberId.trim().isEmpty()) {
@@ -43,9 +42,7 @@ public class MemberService {
         return members.remove(member);
     }
 
-    /*
-      Searches for members matching keyword in ID, Name, or Contact.
-     */
+    
 
     public List<Member> searchMembers(String keyword) {
         List<Member> results = new ArrayList<Member>();
@@ -63,9 +60,7 @@ public class MemberService {
         return results;
     }
 
-    /*
-      Finds a single member by ID.
-     */
+    
 
     public Member findMemberById(String memberId) {
         if (memberId == null) return null;
