@@ -1,22 +1,23 @@
 package org.group5.model;
 
 public class Member {
+
     private String memberId;
     private String name;
     private String contactNumber;
 
-    // Default Constructor
+    
     public Member() {
     }
 
-    // Parameterized Constructor
+    
     public Member(String memberId, String name, String contactNumber) {
         this.memberId = memberId;
         this.name = name;
         this.contactNumber = contactNumber;
     }
 
-    // Getters and Setters
+    
     public String getMemberId() {
         return memberId;
     }
