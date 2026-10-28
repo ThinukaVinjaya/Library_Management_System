@@ -1,8 +1,22 @@
 package org.group5.service;
 
+import org.group5.model.Member;
+import org.group5.model.BorrowRecord;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MemberService {
-    
-     public void addMember(Member member) {
+
+    private List<Member> members;
+    private List<BorrowRecord> borrowRecords;
+
+    public MemberService() {
+        this.members = new ArrayList<Member>();
+        this.borrowRecords = new ArrayList<BorrowRecord>();
+    }
+
+    public void addMember(Member member) {
         if (member == null) {
             throw new IllegalArgumentException("Member details cannot be null.");
         }

@@ -2,6 +2,7 @@ package org.group5.service;
 
 import org.group5.model.Book;
 import org.group5.model.Member;
+import org.group5.model.BorrowRecord;
 import java.util.List;
 
 public class DashboardService {
@@ -11,7 +12,8 @@ public class DashboardService {
 
     public DashboardService(
             BookService bookService,
-            MemberService memberService) {
+            MemberService memberService,
+            BorrowService borrowService) {
 
         this.books = bookService.getBooks();
         this.members = memberService.getMembers();
