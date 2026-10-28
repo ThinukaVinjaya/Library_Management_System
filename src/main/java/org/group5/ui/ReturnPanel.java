@@ -2,7 +2,7 @@ package org.group5.ui;
 
 import org.group5.model.Book;
 import org.group5.model.BorrowRecord;
-import org.group5.service.Library;
+import org.group5.service.LibraryData;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,7 +18,7 @@ import java.util.List;
 
 
 public class ReturnPanel extends JPanel {
-    private Library library;
+    private LibraryData library;
     private Runnable onDataChangedCallback;
 
     private JComboBox<String> cmbBorrowedBooks;
@@ -32,7 +32,7 @@ public class ReturnPanel extends JPanel {
     private JTable borrowedBooksTable;
     private DefaultTableModel tableModel;
 
-    public ReturnPanel(Library library, Runnable onDataChangedCallback) {
+    public ReturnPanel(LibraryData library, Runnable onDataChangedCallback) {
         this.library = library;
         this.onDataChangedCallback = onDataChangedCallback;
         initUI();
@@ -41,19 +41,19 @@ public class ReturnPanel extends JPanel {
 
     private void initUI() {
         setLayout(new BorderLayout(20, 20));
-        setBackground(UIUtils.COLOR_BACKGROUND);
+        setBackground(UiUtils.COLOR_BACKGROUND);
         setBorder(new EmptyBorder(25, 30, 25, 30));
 
         // Header
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setOpaque(false);
         JLabel title = new JLabel("Return Book");
-        title.setFont(UIUtils.FONT_HEADER_LARGE);
-        title.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        title.setFont(UiUtils.FONT_HEADER_LARGE);
+        title.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
 
         JLabel subtitle = new JLabel("Select an issued book to process return and mark it Available in the catalog");
-        subtitle.setFont(UIUtils.FONT_REGULAR);
-        subtitle.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        subtitle.setFont(UiUtils.FONT_REGULAR);
+        subtitle.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         headerPanel.add(title, BorderLayout.NORTH);
         headerPanel.add(subtitle, BorderLayout.SOUTH);
@@ -64,12 +64,12 @@ public class ReturnPanel extends JPanel {
         mainContent.setOpaque(false);
 
         // === LEFT PANEL: RETURN FORM ===
-        JPanel formCard = UIUtils.createCardPanel();
+        JPanel formCard = UiUtils.createCardPanel();
         formCard.setPreferredSize(new Dimension(320, 0));
 
         JLabel formTitle = new JLabel("Return Processing");
-        formTitle.setFont(UIUtils.FONT_HEADER);
-        formTitle.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        formTitle.setFont(UiUtils.FONT_HEADER);
+        formTitle.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
         formCard.add(formTitle, BorderLayout.NORTH);
 
         JPanel formBody = new JPanel();
@@ -78,11 +78,11 @@ public class ReturnPanel extends JPanel {
 
         // Borrowed book selection combo
         cmbBorrowedBooks = new JComboBox<String>();
-        cmbBorrowedBooks.setFont(UIUtils.FONT_REGULAR);
+        cmbBorrowedBooks.setFont(UiUtils.FONT_REGULAR);
         cmbBorrowedBooks.setBackground(Color.WHITE);
 
         // Return Date field
-        txtReturnDate = UIUtils.createStyledTextField(12);
+        txtReturnDate = UiUtils.createStyledTextField(12);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         txtReturnDate.setText(sdf.format(new Date()));
 
@@ -101,13 +101,13 @@ public class ReturnPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         lblRecordId = new JLabel("-");
-        lblRecordId.setFont(UIUtils.FONT_REGULAR_BOLD);
+        lblRecordId.setFont(UiUtils.FONT_REGULAR_BOLD);
         lblBookTitle = new JLabel("-");
-        lblBookTitle.setFont(UIUtils.FONT_REGULAR_BOLD);
+        lblBookTitle.setFont(UiUtils.FONT_REGULAR_BOLD);
         lblBorrower = new JLabel("-");
-        lblBorrower.setFont(UIUtils.FONT_REGULAR);
+        lblBorrower.setFont(UiUtils.FONT_REGULAR);
         lblBorrowDate = new JLabel("-");
-        lblBorrowDate.setFont(UIUtils.FONT_REGULAR);
+        lblBorrowDate.setFont(UiUtils.FONT_REGULAR);
 
         
         gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0.0;
@@ -137,8 +137,8 @@ public class ReturnPanel extends JPanel {
         formBody.add(Box.createVerticalStrut(18));
 
         // Action Buttons Stacked Vertically
-        JButton btnReturn = UIUtils.createStyledButton("Confirm Return", UIUtils.COLOR_SUCCESS, Color.WHITE);
-        JButton btnReset = UIUtils.createStyledButton("Reset Form", UIUtils.COLOR_SECONDARY, Color.WHITE);
+        JButton btnReturn = UiUtils.createStyledButton("Confirm Return", UiUtils.COLOR_SUCCESS, Color.WHITE);
+        JButton btnReset = UiUtils.createStyledButton("Reset Form", UiUtils.COLOR_SECONDARY, Color.WHITE);
 
         btnReturn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 38));
         btnReturn.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -153,17 +153,17 @@ public class ReturnPanel extends JPanel {
         mainContent.add(formCard, BorderLayout.WEST);
 
         // === RIGHT PANEL: CURRENTLY BORROWED BOOKS TABLE ===
-        JPanel tableCard = UIUtils.createCardPanel();
+        JPanel tableCard = UiUtils.createCardPanel();
 
         JPanel tableHeader = new JPanel(new BorderLayout());
         tableHeader.setOpaque(false);
         JLabel tableTitle = new JLabel("Currently Borrowed Books Awaiting Return");
-        tableTitle.setFont(UIUtils.FONT_HEADER);
-        tableTitle.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        tableTitle.setFont(UiUtils.FONT_HEADER);
+        tableTitle.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
 
         JLabel tableSub = new JLabel("Click any row below to quickly load it into the return form");
-        tableSub.setFont(UIUtils.FONT_SMALL);
-        tableSub.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        tableSub.setFont(UiUtils.FONT_SMALL);
+        tableSub.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         tableHeader.add(tableTitle, BorderLayout.NORTH);
         tableHeader.add(tableSub, BorderLayout.SOUTH);
@@ -179,7 +179,7 @@ public class ReturnPanel extends JPanel {
         };
 
         borrowedBooksTable = new JTable(tableModel);
-        UIUtils.formatTable(borrowedBooksTable);
+        UiUtils.formatTable(borrowedBooksTable);
         borrowedBooksTable.getColumnModel().getColumn(0).setPreferredWidth(85);
         borrowedBooksTable.getColumnModel().getColumn(1).setPreferredWidth(85);
         borrowedBooksTable.getColumnModel().getColumn(2).setPreferredWidth(170);
@@ -232,8 +232,8 @@ public class ReturnPanel extends JPanel {
         panel.setOpaque(false);
 
         JLabel label = new JLabel(labelText);
-        label.setFont(UIUtils.FONT_REGULAR_BOLD);
-        label.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        label.setFont(UiUtils.FONT_REGULAR_BOLD);
+        label.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         field.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -247,8 +247,8 @@ public class ReturnPanel extends JPanel {
 
     private JLabel createDetailLabel(String text) {
         JLabel l = new JLabel(text);
-        l.setFont(UIUtils.FONT_SMALL);
-        l.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        l.setFont(UiUtils.FONT_SMALL);
+        l.setForeground(UiUtils.COLOR_TEXT_MUTED);
         return l;
     }
 

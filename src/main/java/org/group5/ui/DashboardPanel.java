@@ -1,5 +1,6 @@
 package org.group5.ui;
 
+import java.awt.*;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -11,10 +12,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import org.group5.model.BorrowRecord;
+import org.group5.service.LibraryData;
 
 public class DashboardPanel extends JPanel {
 
-     private LibraryData librarydata;
+    private LibraryData library;
 
     private JLabel lblTotalBooks;
     private JLabel lblAvailableBooks;
@@ -24,15 +26,15 @@ public class DashboardPanel extends JPanel {
     private JTable recentBorrowTable;
     private DefaultTableModel tableModel;
 
-    public DashboardPanel(LibraryData librarydata) {
-        this.librarydata = librarydata;
+    public DashboardPanel(LibraryData library) {
+        this.library = library;
         initUI();
         refreshData();
     }
 
     private void initUI() {
         setLayout(new BorderLayout(20, 20));
-        setBackground(UIUtils.COLOR_BACKGROUND);
+        setBackground(UiUtils.COLOR_BACKGROUND);
         setBorder(new EmptyBorder(25, 30, 25, 30));
 
         // Header Panel
@@ -40,12 +42,12 @@ public class DashboardPanel extends JPanel {
         headerPanel.setOpaque(false);
 
         JLabel title = new JLabel("System Overview & Dashboard");
-        title.setFont(UIUtils.FONT_HEADER_LARGE);
-        title.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        title.setFont(UiUtils.FONT_HEADER_LARGE);
+        title.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
 
         JLabel subtitle = new JLabel("Real-time summary of books, members, and active borrowing transactions");
-        subtitle.setFont(UIUtils.FONT_REGULAR);
-        subtitle.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        subtitle.setFont(UiUtils.FONT_REGULAR);
+        subtitle.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         headerPanel.add(title, BorderLayout.NORTH);
         headerPanel.add(subtitle, BorderLayout.SOUTH);
@@ -64,26 +66,26 @@ public class DashboardPanel extends JPanel {
         lblBorrowedBooks = new JLabel("0");
         lblTotalMembers = new JLabel("0");
 
-        statsGrid.add(UIUtils.createStatCard("Total Books", lblTotalBooks, "In Library Catalog", UIUtils.COLOR_PRIMARY));
-        statsGrid.add(UIUtils.createStatCard("Available Books", lblAvailableBooks, "Ready to Borrow", UIUtils.COLOR_SUCCESS));
-        statsGrid.add(UIUtils.createStatCard("Borrowed Books", lblBorrowedBooks, "Currently Issued", UIUtils.COLOR_DANGER));
-        statsGrid.add(UIUtils.createStatCard("Registered Members", lblTotalMembers, "Active Students/Staff", UIUtils.COLOR_WARNING));
+        statsGrid.add(UiUtils.createStatCard("Total Books", lblTotalBooks, "In Library Catalog", UiUtils.COLOR_PRIMARY));
+        statsGrid.add(UiUtils.createStatCard("Available Books", lblAvailableBooks, "Ready to Borrow", UiUtils.COLOR_SUCCESS));
+        statsGrid.add(UiUtils.createStatCard("Borrowed Books", lblBorrowedBooks, "Currently Issued", UiUtils.COLOR_DANGER));
+        statsGrid.add(UiUtils.createStatCard("Registered Members", lblTotalMembers, "Active Students/Staff", UiUtils.COLOR_WARNING));
 
         centerPanel.add(statsGrid, BorderLayout.NORTH);
 
         // Bottom Table Card: Active Borrowings
-        JPanel cardTable = UIUtils.createCardPanel();
+        JPanel cardTable = UiUtils.createCardPanel();
         
         JPanel tableHeaderPanel = new JPanel(new BorderLayout());
         tableHeaderPanel.setOpaque(false);
         
         JLabel tableTitle = new JLabel("Active Borrowed Books & Recent Activity");
-        tableTitle.setFont(UIUtils.FONT_HEADER);
-        tableTitle.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        tableTitle.setFont(UiUtils.FONT_HEADER);
+        tableTitle.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
         
         JLabel tableSubtitle = new JLabel("Showing recent borrowing transactions and current status");
-        tableSubtitle.setFont(UIUtils.FONT_SMALL);
-        tableSubtitle.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        tableSubtitle.setFont(UiUtils.FONT_SMALL);
+        tableSubtitle.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         tableHeaderPanel.add(tableTitle, BorderLayout.NORTH);
         tableHeaderPanel.add(tableSubtitle, BorderLayout.SOUTH);
@@ -101,7 +103,7 @@ public class DashboardPanel extends JPanel {
         };
 
         recentBorrowTable = new JTable(tableModel);
-        UIUtils.formatTable(recentBorrowTable);
+        UiUtils.formatTable(recentBorrowTable);
         recentBorrowTable.getColumnModel().getColumn(0).setPreferredWidth(85);
         recentBorrowTable.getColumnModel().getColumn(1).setPreferredWidth(65);
         recentBorrowTable.getColumnModel().getColumn(2).setPreferredWidth(220);

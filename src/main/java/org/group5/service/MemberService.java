@@ -16,6 +16,15 @@ public class MemberService {
         this.borrowRecords = new ArrayList<BorrowRecord>();
     }
 
+    public MemberService(List<Member> members, List<BorrowRecord> borrowRecords) {
+        this.members = (members != null) ? members : new ArrayList<Member>();
+        this.borrowRecords = (borrowRecords != null) ? borrowRecords : new ArrayList<BorrowRecord>();
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
     public void addMember(Member member) {
         if (member == null) {
             throw new IllegalArgumentException("Member details cannot be null.");

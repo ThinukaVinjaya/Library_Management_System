@@ -13,6 +13,14 @@ public class BookService {
         this.books = new ArrayList<Book>();
     }
 
+    public BookService(List<Book> books) {
+        this.books = (books != null) ? books : new ArrayList<Book>();
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
     public void addBook(Book book) {
         if (book == null) {
             throw new IllegalArgumentException("Book details cannot be null.");

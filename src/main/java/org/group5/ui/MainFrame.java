@@ -1,6 +1,6 @@
 package org.group5.ui;
 
-import com.library.service.Library;
+import org.group5.service.LibraryData;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainFrame extends JFrame{
-    private Library library;
+    private LibraryData library;
 
     private JPanel contentPanel;
     private CardLayout cardLayout;
@@ -35,7 +35,7 @@ public class MainFrame extends JFrame{
     private static final String CARD_HISTORY = "HISTORY";
 
     public MainFrame() {
-        this.library = new Library();
+        this.library = new LibraryData();
         this.navButtons = new ArrayList<NavButton>();
         initUI();
     }
@@ -55,7 +55,7 @@ public class MainFrame extends JFrame{
         // Content Area with CardLayout
         cardLayout = new CardLayout();
         contentPanel = new JPanel(cardLayout);
-        contentPanel.setBackground(UIUtils.COLOR_BACKGROUND);
+        contentPanel.setBackground(UiUtils.COLOR_BACKGROUND);
 
         // Data synchronization callback
         Runnable syncCallback = new Runnable() {
@@ -89,7 +89,7 @@ public class MainFrame extends JFrame{
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new BorderLayout());
         sidebar.setPreferredSize(new Dimension(245, 0));
-        sidebar.setBackground(UIUtils.COLOR_SIDEBAR);
+        sidebar.setBackground(UiUtils.COLOR_SIDEBAR);
         sidebar.setBorder(new EmptyBorder(22, 16, 22, 16));
 
         // Brand / Title Header
@@ -100,14 +100,14 @@ public class MainFrame extends JFrame{
 
         JLabel titleBadge = new JLabel("LMS PORTAL");
         titleBadge.setFont(new Font("Segoe UI", Font.BOLD, 10));
-        titleBadge.setForeground(UIUtils.COLOR_PRIMARY);
+        titleBadge.setForeground(UiUtils.COLOR_PRIMARY);
 
         JLabel brandTitle = new JLabel("Library System");
-        brandTitle.setFont(UIUtils.FONT_HEADER);
+        brandTitle.setFont(UiUtils.FONT_HEADER);
         brandTitle.setForeground(Color.WHITE);
 
         JLabel brandSubtitle = new JLabel("Uva Wellassa University");
-        brandSubtitle.setFont(UIUtils.FONT_SMALL);
+        brandSubtitle.setFont(UiUtils.FONT_SMALL);
         brandSubtitle.setForeground(new Color(148, 163, 184)); // Muted light slate
 
         brandPanel.add(titleBadge);
@@ -149,7 +149,7 @@ public class MainFrame extends JFrame{
         footerPanel.setLayout(new BoxLayout(footerPanel, BoxLayout.Y_AXIS));
         footerPanel.setOpaque(false);
 
-        JButton btnExit = UIUtils.createStyledButton("Exit System", new Color(51, 65, 85), Color.WHITE);
+        JButton btnExit = UiUtils.createStyledButton("Exit System", new Color(51, 65, 85), Color.WHITE);
         btnExit.setMaximumSize(new Dimension(Integer.MAX_VALUE, 38));
         btnExit.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -229,7 +229,7 @@ public class MainFrame extends JFrame{
 
         public NavButton(String text) {
             super(text);
-            setFont(UIUtils.FONT_REGULAR_BOLD);
+            setFont(UiUtils.FONT_REGULAR_BOLD);
             setForeground(new Color(203, 213, 225));
             setFocusPainted(false);
             setBorderPainted(false);
@@ -258,10 +258,10 @@ public class MainFrame extends JFrame{
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             if (isActive) {
-                g2.setColor(UIUtils.COLOR_SIDEBAR_ACTIVE);
+                g2.setColor(UiUtils.COLOR_SIDEBAR_ACTIVE);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 8, 8);
             } else if (getModel().isRollover()) {
-                g2.setColor(UIUtils.COLOR_SIDEBAR_HOVER);
+                g2.setColor(UiUtils.COLOR_SIDEBAR_HOVER);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 8, 8);
             }
 

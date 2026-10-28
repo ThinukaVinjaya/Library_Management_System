@@ -14,12 +14,21 @@ public class LibraryData {
     private List<BorrowRecord> borrowRecords;
     private int recordIdSequence;
 
+    private BookService bookService;
+    private MemberService memberService;
+    private BorrowService borrowService;
+    private DashboardService dashboardService;
+
     public LibraryData() {
         this.books = new ArrayList<Book>();
         this.members = new ArrayList<Member>();
         this.borrowRecords = new ArrayList<BorrowRecord>();
         this.recordIdSequence = 1000;
         seedSampleData();
+        this.bookService = new BookService(books);
+        this.memberService = new MemberService(members, borrowRecords);
+        this.borrowService = new BorrowService(books, members, borrowRecords);
+        this.dashboardService = new DashboardService(bookService, memberService, borrowService);
     }
 
 
@@ -52,4 +61,87 @@ public class LibraryData {
         recordIdSequence = 1003;
     }
 
+    // Book operations
+    public void addBook(Book book) {
+        bookService.addBook(book);
+    }
+
+    public boolean removeBook(String bookId) {
+        return bookService.removeBook(bookId);
+    }
+
+    public List<Book> searchBooks(String keyword) {
+        return bookService.searchBooks(keyword);
+    }
+
+    public Book findBookById(String bookId) {
+        return bookService.findBookById(bookId);
+    }
+
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
+    }
+
+    public List<Book> getAvailableBooks() {
+        return bookService.getAvailableBooks();
+    }
+
+    public List<Book> getBorrowedBooks() {
+        return bookService.getBorrowedBooks();
+    }
+
+    // Member operations
+    public void addMember(Member member) {
+        memberService.addMember(member);
+    }
+
+    public boolean removeMember(String memberId) {
+        return memberService.removeMember(memberId);
+    }
+
+    public List<Member> searchMembers(String keyword) {
+        return memberService.searchMembers(keyword);
+    }
+
+    public Member findMemberById(String memberId) {
+        return memberService.findMemberById(memberId);
+    }
+
+    public List<Member> getAllMembers() {
+        return memberService.getAllMembers();
+    }
+
+    // Borrow and Return operations
+    public BorrowRecord borrowBook(String bookId, String memberId, String borrowDate) {
+        return borrowService.borrowBook(bookId, memberId, borrowDate);
+    }
+
+    public BorrowRecord returnBook(String bookId, String returnDate) {
+        return borrowService.returnBook(bookId, returnDate);
+    }
+
+    public BorrowRecord getActiveRecordForBook(String bookId) {
+        return borrowService.getActiveRecordForBook(bookId);
+    }
+
+    public List<BorrowRecord> getAllBorrowRecords() {
+        return borrowService.getAllBorrowRecords();
+    }
+
+    // Dashboard operations
+    public int getTotalBooksCount() {
+        return dashboardService.getTotalBooksCount();
+    }
+
+    public int getAvailableBooksCount() {
+        return dashboardService.getAvailableBooksCount();
+    }
+
+    public int getBorrowedBooksCount() {
+        return dashboardService.getBorrowedBooksCount();
+    }
+
+    public int getTotalMembersCount() {
+        return dashboardService.getTotalMembersCount();
+    }
 }

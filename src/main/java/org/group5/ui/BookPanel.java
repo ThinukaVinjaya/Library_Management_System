@@ -1,7 +1,7 @@
 package org.group5.ui;
 
 import org.group5.model.Book;
-import org.group5.service.Library;
+import org.group5.service.LibraryData;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List; 
 
 public class BookPanel extends JPanel {
-    private Library library;
+    private LibraryData library;
     private Runnable onDataChangedCallback;
 
     // Form inputs
@@ -29,7 +29,7 @@ public class BookPanel extends JPanel {
     private JTable bookTable;
     private DefaultTableModel tableModel;
 
-    public BookPanel(Library library, Runnable onDataChangedCallback) {
+    public BookPanel(LibraryData library, Runnable onDataChangedCallback) {
         this.library = library;
         this.onDataChangedCallback = onDataChangedCallback;
         initUI();
@@ -38,19 +38,19 @@ public class BookPanel extends JPanel {
 
     private void initUI() {
         setLayout(new BorderLayout(20, 20));
-        setBackground(UIUtils.COLOR_BACKGROUND);
+        setBackground(UiUtils.COLOR_BACKGROUND);
         setBorder(new EmptyBorder(25, 30, 25, 30));
 
         // Header
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setOpaque(false);
         JLabel title = new JLabel("Book Management");
-        title.setFont(UIUtils.FONT_HEADER_LARGE);
-        title.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        title.setFont(UiUtils.FONT_HEADER_LARGE);
+        title.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
 
         JLabel subtitle = new JLabel("Add, search, inspect, and remove books in the library catalog");
-        subtitle.setFont(UIUtils.FONT_REGULAR);
-        subtitle.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        subtitle.setFont(UiUtils.FONT_REGULAR);
+        subtitle.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         headerPanel.add(title, BorderLayout.NORTH);
         headerPanel.add(subtitle, BorderLayout.SOUTH);
@@ -61,25 +61,25 @@ public class BookPanel extends JPanel {
         mainContent.setOpaque(false);
 
         // LEFT PANEL: ADD BOOK FORM 
-        JPanel formCard = UIUtils.createCardPanel();
+        JPanel formCard = UiUtils.createCardPanel();
         formCard.setPreferredSize(new Dimension(300, 0));
 
         JLabel formTitle = new JLabel("Add New Book");
-        formTitle.setFont(UIUtils.FONT_HEADER);
-        formTitle.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        formTitle.setFont(UiUtils.FONT_HEADER);
+        formTitle.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
         formCard.add(formTitle, BorderLayout.NORTH);
 
         JPanel formBody = new JPanel();
         formBody.setOpaque(false);
         formBody.setLayout(new BoxLayout(formBody, BoxLayout.Y_AXIS));
 
-        txtBookId = UIUtils.createStyledTextField(15);
-        txtTitle = UIUtils.createStyledTextField(15);
-        txtAuthor = UIUtils.createStyledTextField(15);
+        txtBookId = UiUtils.createStyledTextField(15);
+        txtTitle = UiUtils.createStyledTextField(15);
+        txtAuthor = UiUtils.createStyledTextField(15);
 
         String[] categories = {"Technology", "Computer Science", "Software Engineering", "Database", "AI & Data", "Mathematics", "Literature", "General"};
         cmbCategory = new JComboBox<String>(categories);
-        cmbCategory.setFont(UIUtils.FONT_REGULAR);
+        cmbCategory.setFont(UiUtils.FONT_REGULAR);
         cmbCategory.setBackground(Color.WHITE);
 
         formBody.add(createFormField("Book ID *", txtBookId));
@@ -92,8 +92,8 @@ public class BookPanel extends JPanel {
         formBody.add(Box.createVerticalStrut(18));
 
         // Form Buttons Stacked Vertically
-        JButton btnAddBook = UIUtils.createStyledButton("+ Add New Book", UIUtils.COLOR_PRIMARY, Color.WHITE);
-        JButton btnClear = UIUtils.createStyledButton("Clear Form", UIUtils.COLOR_SECONDARY, Color.WHITE);
+        JButton btnAddBook = UiUtils.createStyledButton("+ Add New Book", UiUtils.COLOR_PRIMARY, Color.WHITE);
+        JButton btnClear = UiUtils.createStyledButton("Clear Form", UiUtils.COLOR_SECONDARY, Color.WHITE);
 
         btnAddBook.setMaximumSize(new Dimension(Integer.MAX_VALUE, 38));
         btnAddBook.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -109,7 +109,7 @@ public class BookPanel extends JPanel {
         mainContent.add(formCard, BorderLayout.WEST);
 
         //RIGHT PANEL: BOOK LIST & SEARCH 
-        JPanel tableCard = UIUtils.createCardPanel();
+        JPanel tableCard = UiUtils.createCardPanel();
 
         // Top Search Bar inside Table Card
         JPanel searchBar = new JPanel(new BorderLayout(10, 0));
@@ -120,12 +120,12 @@ public class BookPanel extends JPanel {
         searchInputs.setOpaque(false);
 
         JLabel lblSearch = new JLabel("Search:");
-        lblSearch.setFont(UIUtils.FONT_REGULAR_BOLD);
-        lblSearch.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        lblSearch.setFont(UiUtils.FONT_REGULAR_BOLD);
+        lblSearch.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
 
-        txtSearch = UIUtils.createStyledTextField(13);
-        JButton btnSearch = UIUtils.createStyledButton("Search", UIUtils.COLOR_PRIMARY, Color.WHITE);
-        JButton btnReset = UIUtils.createStyledButton("View All", UIUtils.COLOR_SECONDARY, Color.WHITE);
+        txtSearch = UiUtils.createStyledTextField(13);
+        JButton btnSearch = UiUtils.createStyledButton("Search", UiUtils.COLOR_PRIMARY, Color.WHITE);
+        JButton btnReset = UiUtils.createStyledButton("View All", UiUtils.COLOR_SECONDARY, Color.WHITE);
 
         searchInputs.add(lblSearch);
         searchInputs.add(txtSearch);
@@ -138,12 +138,12 @@ public class BookPanel extends JPanel {
         JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         filterPanel.setOpaque(false);
         JLabel lblFilter = new JLabel("Category:");
-        lblFilter.setFont(UIUtils.FONT_REGULAR_BOLD);
-        lblFilter.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        lblFilter.setFont(UiUtils.FONT_REGULAR_BOLD);
+        lblFilter.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         String[] filterOptions = {"All Categories", "Technology", "Computer Science", "Software Engineering", "Database", "AI & Data", "Mathematics", "Literature", "General"};
         cmbFilterCategory = new JComboBox<String>(filterOptions);
-        cmbFilterCategory.setFont(UIUtils.FONT_REGULAR);
+        cmbFilterCategory.setFont(UiUtils.FONT_REGULAR);
         cmbFilterCategory.setBackground(Color.WHITE);
 
         filterPanel.add(lblFilter);
@@ -162,7 +162,7 @@ public class BookPanel extends JPanel {
         };
 
         bookTable = new JTable(tableModel);
-        UIUtils.formatTable(bookTable);
+        UiUtils.formatTable(bookTable);
         bookTable.getColumnModel().getColumn(0).setPreferredWidth(70);
         bookTable.getColumnModel().getColumn(1).setPreferredWidth(220);
         bookTable.getColumnModel().getColumn(2).setPreferredWidth(140);
@@ -179,15 +179,15 @@ public class BookPanel extends JPanel {
         actionBottom.setBorder(new EmptyBorder(12, 0, 0, 0));
 
         JLabel lblHint = new JLabel("Tip: Select row to remove.");
-        lblHint.setFont(UIUtils.FONT_SMALL);
-        lblHint.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        lblHint.setFont(UiUtils.FONT_SMALL);
+        lblHint.setForeground(UiUtils.COLOR_TEXT_MUTED);
         actionBottom.add(lblHint, BorderLayout.WEST);
 
         JPanel actionBtns = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         actionBtns.setOpaque(false);
 
-        JButton btnRemove = UIUtils.createStyledButton("Remove Book", UIUtils.COLOR_DANGER, Color.WHITE);
-        JButton btnRefresh = UIUtils.createStyledButton("Refresh", UIUtils.COLOR_SECONDARY, Color.WHITE);
+        JButton btnRemove = UiUtils.createStyledButton("Remove Book", UiUtils.COLOR_DANGER, Color.WHITE);
+        JButton btnRefresh = UiUtils.createStyledButton("Refresh", UiUtils.COLOR_SECONDARY, Color.WHITE);
 
         actionBtns.add(btnRemove);
         actionBtns.add(btnRefresh);
@@ -270,8 +270,8 @@ public class BookPanel extends JPanel {
         panel.setOpaque(false);
 
         JLabel label = new JLabel(labelText);
-        label.setFont(UIUtils.FONT_REGULAR_BOLD);
-        label.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        label.setFont(UiUtils.FONT_REGULAR_BOLD);
+        label.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         field.setAlignmentX(Component.LEFT_ALIGNMENT);

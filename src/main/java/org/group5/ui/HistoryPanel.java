@@ -1,7 +1,7 @@
 package org.group5.ui;
 
 import org.group5.model.BorrowRecord;
-import org.group5.service.Library;
+import org.group5.service.LibraryData;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class HistoryPanel extends JPanel {
-    private Library library;
+    private LibraryData library;
 
     private JTextField txtSearch;
     private JComboBox<String> cmbStatusFilter;
     private JTable historyTable;
     private DefaultTableModel tableModel;
 
-    public HistoryPanel(Library library) {
+    public HistoryPanel(LibraryData library) {
         this.library = library;
         initUI();
         refreshHistoryTable();
@@ -27,26 +27,26 @@ public class HistoryPanel extends JPanel {
 
     private void initUI() {
         setLayout(new BorderLayout(20, 20));
-        setBackground(UIUtils.COLOR_BACKGROUND);
+        setBackground(UiUtils.COLOR_BACKGROUND);
         setBorder(new EmptyBorder(25, 30, 25, 30));
 
         // Header
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setOpaque(false);
         JLabel title = new JLabel("Borrowing History & Transaction Records");
-        title.setFont(UIUtils.FONT_HEADER_LARGE);
-        title.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        title.setFont(UiUtils.FONT_HEADER_LARGE);
+        title.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
 
         JLabel subtitle = new JLabel("Complete log of all book issue and return transactions with timestamps");
-        subtitle.setFont(UIUtils.FONT_REGULAR);
-        subtitle.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        subtitle.setFont(UiUtils.FONT_REGULAR);
+        subtitle.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         headerPanel.add(title, BorderLayout.NORTH);
         headerPanel.add(subtitle, BorderLayout.SOUTH);
         add(headerPanel, BorderLayout.NORTH);
 
         // Center Card Panel
-        JPanel cardTable = UIUtils.createCardPanel();
+        JPanel cardTable = UiUtils.createCardPanel();
 
         // Top Filter Bar
         JPanel filterBar = new JPanel(new BorderLayout(10, 0));
@@ -57,12 +57,12 @@ public class HistoryPanel extends JPanel {
         searchInputs.setOpaque(false);
 
         JLabel lblSearch = new JLabel("Search History:");
-        lblSearch.setFont(UIUtils.FONT_REGULAR_BOLD);
-        lblSearch.setForeground(UIUtils.COLOR_TEXT_PRIMARY);
+        lblSearch.setFont(UiUtils.FONT_REGULAR_BOLD);
+        lblSearch.setForeground(UiUtils.COLOR_TEXT_PRIMARY);
 
-        txtSearch = UIUtils.createStyledTextField(18);
-        JButton btnSearch = UIUtils.createStyledButton("Search", UIUtils.COLOR_PRIMARY, Color.WHITE);
-        JButton btnReset = UIUtils.createStyledButton("Reset", UIUtils.COLOR_SECONDARY, Color.WHITE);
+        txtSearch = UiUtils.createStyledTextField(18);
+        JButton btnSearch = UiUtils.createStyledButton("Search", UiUtils.COLOR_PRIMARY, Color.WHITE);
+        JButton btnReset = UiUtils.createStyledButton("Reset", UiUtils.COLOR_SECONDARY, Color.WHITE);
 
         searchInputs.add(lblSearch);
         searchInputs.add(txtSearch);
@@ -75,12 +75,12 @@ public class HistoryPanel extends JPanel {
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         statusPanel.setOpaque(false);
         JLabel lblStatus = new JLabel("Filter Status:");
-        lblStatus.setFont(UIUtils.FONT_REGULAR_BOLD);
-        lblStatus.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        lblStatus.setFont(UiUtils.FONT_REGULAR_BOLD);
+        lblStatus.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
         String[] statuses = {"All Statuses", "Borrowed", "Returned"};
         cmbStatusFilter = new JComboBox<String>(statuses);
-        cmbStatusFilter.setFont(UIUtils.FONT_REGULAR);
+        cmbStatusFilter.setFont(UiUtils.FONT_REGULAR);
         cmbStatusFilter.setBackground(Color.WHITE);
 
         statusPanel.add(lblStatus);
@@ -99,7 +99,7 @@ public class HistoryPanel extends JPanel {
         };
 
         historyTable = new JTable(tableModel);
-        UIUtils.formatTable(historyTable);
+        UiUtils.formatTable(historyTable);
         historyTable.getColumnModel().getColumn(0).setPreferredWidth(75);
         historyTable.getColumnModel().getColumn(1).setPreferredWidth(60);
         historyTable.getColumnModel().getColumn(2).setPreferredWidth(170);
@@ -119,11 +119,11 @@ public class HistoryPanel extends JPanel {
         bottomPanel.setBorder(new EmptyBorder(12, 0, 0, 0));
 
         JLabel lblTotalRecords = new JLabel("Records are updated in real-time upon book issue and return.");
-        lblTotalRecords.setFont(UIUtils.FONT_SMALL);
-        lblTotalRecords.setForeground(UIUtils.COLOR_TEXT_MUTED);
+        lblTotalRecords.setFont(UiUtils.FONT_SMALL);
+        lblTotalRecords.setForeground(UiUtils.COLOR_TEXT_MUTED);
         bottomPanel.add(lblTotalRecords, BorderLayout.WEST);
 
-        JButton btnRefresh = UIUtils.createStyledButton("Refresh Log", UIUtils.COLOR_SECONDARY, Color.WHITE);
+        JButton btnRefresh = UiUtils.createStyledButton("Refresh Log", UiUtils.COLOR_SECONDARY, Color.WHITE);
         bottomPanel.add(btnRefresh, BorderLayout.EAST);
         cardTable.add(bottomPanel, BorderLayout.SOUTH);
 

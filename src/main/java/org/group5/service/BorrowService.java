@@ -24,6 +24,18 @@ public class BorrowService {
         this.books = Objects.requireNonNull(books, "books must not be null");
         this.members = Objects.requireNonNull(members, "members must not be null");
         this.borrowRecords = Objects.requireNonNull(borrowRecords, "borrowRecords must not be null");
+        this.recordIdSequence = 1000;
+        for (BorrowRecord r : this.borrowRecords) {
+            try {
+                if (r.getRecordId() != null && r.getRecordId().startsWith("REC-")) {
+                    int seq = Integer.parseInt(r.getRecordId().substring(4));
+                    if (seq > this.recordIdSequence) {
+                        this.recordIdSequence = seq;
+                    }
+                }
+            } catch (Exception ignored) {
+            }
+        }
     }
 
     private Book findBookById(String bookId) {
