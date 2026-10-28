@@ -2,7 +2,6 @@ package org.group5.service;
 
 import org.group5.model.Book;
 import org.group5.model.Member;
-import org.group5.model.BorrowRecord;
 import java.util.List;
 
 public class DashboardService {

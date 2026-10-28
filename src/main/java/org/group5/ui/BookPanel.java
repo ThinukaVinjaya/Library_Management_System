@@ -137,7 +137,7 @@ public class BookPanel extends JPanel {
         // Category Filter on the right
         JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         filterPanel.setOpaque(false);
-        JLabel lblFilter = new JLabel("Category:");
+        JLabel lblFilter = new JLabel(":");
         lblFilter.setFont(UiUtils.FONT_REGULAR_BOLD);
         lblFilter.setForeground(UiUtils.COLOR_TEXT_MUTED);
 
