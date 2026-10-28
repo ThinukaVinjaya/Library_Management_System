@@ -37,9 +37,7 @@ public class UiUtils {
     public static final Font FONT_SMALL = new Font("Segoe UI", Font.PLAIN, 12);
     public static final Font FONT_STAT_NUMBER = new Font("Segoe UI", Font.BOLD, 28);
 
-    /*
-      Creates a modern styled button with custom painting, hover effects, and rounded corners.
-     */
+   
 
     public static JButton createStyledButton(final String text, final Color bgColor, final Color fgColor) {
         final JButton button = new JButton(text) {
@@ -75,9 +73,7 @@ public class UiUtils {
         return button;
     }
 
-    /*
-      Creates a styled text field with comfortable padding and clean border.
-     */
+    
 
     public static JTextField createStyledTextField(int columns) {
         JTextField textField = new JTextField(columns);
@@ -90,9 +86,7 @@ public class UiUtils {
         return textField;
     }
 
-    /*
-      Creates a clean container panel with white background and subtle rounded border.
-     */
+    
 
     public static JPanel createCardPanel() {
         JPanel card = new JPanel();
@@ -105,9 +99,7 @@ public class UiUtils {
         return card;
     }
 
-    /*
-      Creates a Dashboard Stat Card.
-     */
+    
     public static JPanel createStatCard(String title, JLabel valueLabel, String subtitle, Color accentColor) {
         JPanel card = new JPanel();
         card.setLayout(new BorderLayout(10, 8));
@@ -148,9 +140,6 @@ public class UiUtils {
         return card;
     }
 
-    /*
-      Formats JTable to look modern and readable.
-     */
 
     public static void formatTable(JTable table) {
         table.setFont(FONT_REGULAR);
@@ -208,9 +197,6 @@ public class UiUtils {
         });
     }
 
-    /*
-      Helper to darken a color for hover state.
-     */
 
     public static Color darken(Color color, float factor) {
         return new Color(

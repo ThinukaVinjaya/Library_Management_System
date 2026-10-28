@@ -22,7 +22,7 @@ import org.group5.model.Book;
 import org.group5.model.BorrowRecord;
 import org.group5.service.LibraryData;
 
-public class BorrowPanel {
+public class BorrowPanel extends JPanel {
 
     private LibraryData library;
     private Runnable onDataChangedCallback;
